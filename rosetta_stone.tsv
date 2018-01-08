@@ -1,0 +1,265 @@
+Purpose	VBA	TCL	MATLAB	PYTHON	BASH
+Full Name	Visual Basic for Applications	Tool Command Language			Bourne Again Shell
+File Type	.vba; .xls; .xlsm	.tcl	.m	.py	.sh
+Website	http://msdn.microsoft.com	www.tcl.tk	www.mathworks.com	www.python.org	https://www.gnu.org/software/bash/manual/
+Style Guide	https://msdn.microsoft.com/en-us/library/aa240822(v=vs.60).aspx	http://wiki.tcl.tk/708	https://www.mathworks.com/matlabcentral/fileexchange/46056-matlab-style-guidelines-2-0	https://www.python.org/dev/peps/pep-0008/	https://google.github.io/styleguide/shell.xml
+Programming Paradigm	Object Oriented(ish)	Functional, Object Oriented, Procedural, Imperative	Functional, Imperative, Procedural, Object Oriented	Object Oriented, Imperative, Functional, Procedural	Scripting
+"Make Comments
+"	‘text comment	# text comment	% text comments	# text comment 	# text comment
+Inferred Typing: Does the programming language guess or not care what type (e.g. int, str, float, array) your input is?	No	Yes	Yes	Yes	Yes
+Indexing	0	0	1	0	0
+Pros	"Most people have MS Office/Excel otherwise developer tools can be downloaded free. 
+
+"	"Free | Lightweight coding language | Availability of TCL starpacks that allow for self-contained development kits.
+"	"Widely used | decent documentation | can do quick operations on large datasets | Good GUI
+"		Common Scripting Language | good for file operations (moving/renaming)
+Cons	Costs Money to own Office | small community resources	"No GUI, must utilize TK (TCL’s sister language) | Not great for larger projects that require maintainable code
+"	Expensive | Can’t do much beyond science applications		Not useful for larger projects/mathmatical operations
+"Declare and Set variables
+"	"Dim A as Integer
+A = 0"	set A 0	A = 0;	A = 0	A=0
+Call a Variable	A	$A	A	A	$A
+Declare Array/List/Vector variable	Dim sam(0 to 10) as Integer	set sam {}	"sam = 1:10;
+sam(1:10) = [];"	sam = [] 	A=()
+Set Array/List/Vector variable	"‘Writes the value to the first place in the array
+sam(0) = 2"	"#Writes the value to the end of the list
+lappend sam 2"	"% Writes the value to the first place in the array
+sam(1) = 2"	"#Writes the value to the end of the list
+sam.append(2)"	
+Call an Array/List/Vector variable	B = sam(0)	set B [lindex $sam 0]	B = sam(1);	B = sam[0]	
+Operators					
+Equals	=	Err:520	Err:520	Err:520	
+Not Equal	< >	!=	~=	!=	
+And	AND	&&	&&	and	
+Or	OR	||	||	or	
+Appending Paths	"‘Basic Case
+strPath = “C:\Studies\”
+strFolder = “Data\”
+strFullpath = strPath + strFolder
+
+‘Adding text on the fly
+strFullpath = strPath + strFolder + “newfile.txt”"	"# Slashes in quotations can be used for special characters/purposes so you must use two
+set Path “c:\\Studies\\”
+set Folder “Data\\”
+set Fullpath $Path$Folder
+
+# Can also be done in brackets
+set Path {c:\Studies\}
+set Folder {Data\}
+set Fullpath $path$folder
+
+# Adding text on the fly
+set Fullpath ${path}${folder}_newfile.txt"	"% Basic Case
+Path = ‘C:\Studies\’;
+Folder = ‘Data\’;
+Fullpath = strcat(Path, Folder);
+
+% Adding text on the fly
+Fullpath = strcat(Path, Folder, ‘newfile.txt’);"	"# Basic case
+Path = ‘C:\Studies\’
+Folder = ‘Data\’
+Fullpath = Path + Folder
+
+# Adding text on the fly
+Fullpath = Path + Folder + ‘newfile.txt’
+
+"	
+Math	"‘returns an integer
+B = (A + 5) 
+
+‘returns an integer
+B = (A + 5.0) "	"#returns an integer
+set B [expr $A + 5]  
+
+#returns a floating point value
+set B [expr $A + 5.0]  "	"% returns an integer
+B = (A + 5) 
+
+% returns an integer
+B = (A + 5.0)"	"#returns an integer
+B=(A+5)
+
+#returns a float
+B=(A+5.0)"	
+If statement	"‘Simple form
+If (A = 2) Then
+   ‘code to execute
+End If
+‘Multiple Evaluation form
+If ((A = 2) AND (B = 7)) Then
+   ‘code to execute
+End If"	"#Simple form
+if {$A == 2} {
+   #code to execute
+}
+#Multiple Evaluation form
+if {$A == 2 && $B == 7} {
+   #code to execute
+}"	"% Simple form
+if (A == 2)
+   % code to execute
+end
+% Multiple Evaluation form
+if ((A == 2) && (B == 7)) 
+   %code to execute
+end"	"#Simple form
+if A==2:
+    #code to execute
+    
+#Multiple evaluation form
+if (A==2) and (B==7):
+   #code to execute
+     "	
+If Else statement	"If (A = 2) Then
+   ‘code to execute if true
+Else
+   ‘code to execute if false
+End If"	"if {$A == 2} {
+   #code to execute if true
+} else {
+   #code to execute if false
+}"	"if (A == 2)
+   % code to execute if true
+else
+   % code to execute if false
+end"	"If (A==2):
+   #code to execute
+else:
+   #code to execute
+ "	
+If Else statement for multiple alternatives	"Select Case A
+   Case 1
+      ‘code to execute if A = 1
+   Case 2
+      ‘code to execute if A = 2
+   Case 3
+      ‘code to execute if A = 3
+End Select"	"switch $A {
+   1 { #code to execute if A == 1}
+   2 { #code to execute if A == 2}
+   3 { #code to execute if A == 3}
+}"	"switch A
+   case 1
+     % code to execute if A = 1
+   case 2
+     % code to execute if A = 2
+   case 3
+     % code to execute if A = 3
+end"	"if A==1:
+    #code to execute if A=1
+elif A==2:
+    #code to execute if A=2
+elif A==3:
+    #code to execute if A=3"	
+Increment Variable	A = A + 1	incr A	A = A + 1;	"A=A+1
+A += 1"	
+"Controlled loop
+“For loop”"	"‘Simple form
+For A = 1 to 10
+   ‘code to execute
+Next A
+‘Complex form: Loops until it finds a value of 10, then exits the loop.
+
+For A = 1 to 100
+   If (A = 10) Then
+      Exit For
+   End If
+Next A"	"#Simple form
+for {set A 1} {$A < 10} {incr A} {
+   #code to execute
+}
+#Complex form: Loops until it finds a value of 10, then exits the loop.
+
+for {set A 1} {$A < 100} {incr A} {
+   if {$A == 10} {
+      break
+   }
+}"	"% Simple form
+for A = 1:10
+   % code to execute
+end
+% Complex form: loops until it finds a value of 10, then exits the loop.
+for A = 1:10
+    if (A == 10)
+      break
+   end
+end"	"# Simple form
+for A in range(1,10):
+    #code to execute
+
+# Complex form: loops until it finds a value of 10, then exits the loop.
+for A in range(1,100):
+    if A==10:
+        break"	
+"Controlled Loop
+“for each loop”"		"set conditions { cond1 cond2 }
+foreach A $conditions {
+   #code to execute
+}"		"conditions = [cond1, cond2]
+for A in conditions:
+   #code to execute"	
+"Uncontrolled loop
+“While loop”"	"A = 1
+Do While (A <> 10)
+   ‘code to execute
+   A = A + 1
+Loop"	"set A 1
+while {$A != 10} {
+   #code to execute
+   incr A
+}"	"A = 1;
+while (A ~= 10) 
+    % code to execute
+   A = A + 1;
+end"	"A=1
+while (A < 10):
+     # code to execute
+     A += 1"	
+Call other codes	Otherprogram	Source {S:\\Studies\Otherprogram.tcl}	Otherprogram;	Exec (S:\\Studies\Otherprogram.py)	
+"Check to see if a file exists
+"	"sPath = “S:\\Studies\file.txt”
+ If (Not (Dir(sPath) = vbNullString)) Then
+   ‘code to execute
+End If"	"set fulpa “S:\\\\Studies\\file.txt”
+if {[file exists ""$fulpa""]} {
+   #code to execute
+}"	"sPath = file.txt
+if (exist(Fpartid, 'file') > 0)
+   % code to execute
+end"	"import os
+sPath=""S:\\Studies\\test.py""
+if os.path.isfile(sPath):
+    #code to execute"	
+"Create procedures
+This example creates a procedure to square a value"	"Function SQ(inpt As Integer)
+    SQ = (inpt * inpt)
+End Function
+A = SQ(4)"	"proc SQ { inpt } {
+   set newval [expr $inpt*$inpt]
+   return $newval
+}
+set A [SQ 4]"	"function A = SQ(x)
+    A = (x*x);
+End
+A = SQ(4)"	"def SQ(inpt):
+    result = inpt * inpt
+    return result
+A = SQ(4)"	
+Error Trapping	"On Error GoTo ErrHandler:
+   B = (A / 0)
+   ‘code to execute if there is not an error
+Exit Sub
+ErrHandler:
+   ‘code to execute if there is an error
+Resume Next"	"if {[catch {set B [expr $A / 0]} errmsg]} {
+   #code to execute if there is an error
+} else {
+   #code to execute if there is not an error
+}"	"try
+    B = A/0;
+catch
+    % code to execute if there is an error
+end"	"try:
+   B=A/0
+except:
+    #code to execute if there is an error"	
